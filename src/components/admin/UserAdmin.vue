@@ -72,7 +72,7 @@
         <b-button variant="warning" @click="getUser(data.item)" class="mr-2">
           <i class="fa fa-pencil"></i>
         </b-button>
-        <b-button variant="danger" @click="getUser(data.item, 'remove')" class="mr-2">
+        <b-button variant="danger" @click="getUser(data.item, 'remove')">
           <i class="fa fa-trash"></i>
         </b-button>
       </template>
@@ -130,7 +130,7 @@ export default {
     remove() {
       const id = this.user.id;
       axios
-        .delete(`${baseApiUrl}/users${id}`)
+        .delete(`${baseApiUrl}/users/${id}`)
         .then(() => {
           this.$toasted.global.defaultSuccess();
           this.reset();
