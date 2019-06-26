@@ -16,7 +16,7 @@
 
 <script>
 import axios from "axios";
-import { baseApiUrl, showError } from "@/global";
+import { baseApiUrl } from "@/global";
 import PageTitle from "../template/PageTitle";
 
 export default {
