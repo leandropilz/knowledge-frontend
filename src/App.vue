@@ -37,9 +37,10 @@ export default {
 
       if (!userData) {
         this.validatingToken = false;
-        return this.$router.push({ name: "auth" });
+        this.$router.push({ name: "auth" });
+        return;
       }
-
+      
       const res = await axios.post(`${baseApiUrl}/validateToken`, userData);
 
       if (res.data) {
