@@ -2,7 +2,8 @@
   <div id="app" :class="{'hide-menu': !isMenuVisible || !user}">
     <Header title="Cod3r - Base de Conhecimento" :hideToggle="!user" :hideUserDropdown="!user"/>
     <Menu v-if="user"/>
-    <Content/>
+    <Loading v-if="validatingToken"/>
+    <Content v-else/>
     <Footer/>
   </div>
 </template>
@@ -15,10 +16,11 @@ import Header from "@/components/template/Header";
 import Menu from "@/components/template/Menu";
 import Content from "@/components/template/Content";
 import Footer from "@/components/template/Footer";
+import Loading from "@/components/template/Loading";
 
 export default {
   name: "App",
-  components: { Header, Menu, Content, Footer },
+  components: { Header, Menu, Content, Footer, Loading },
   computed: mapState(["isMenuVisible", "user"]),
   data() {
     return {
@@ -26,7 +28,7 @@ export default {
     };
   },
   methods: {
-    async validatingToken() {
+    async validateToken() {
       this.validatingToken = true;
 
       const json = localStorage.getItem(userKey);
@@ -51,7 +53,7 @@ export default {
     }
   },
   created() {
-    this.validatingToken();
+    this.validateToken();
   }
 };
 </script>
